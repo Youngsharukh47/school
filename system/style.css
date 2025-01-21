@@ -1,0 +1,163 @@
+body {
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f7f9fc;
+  padding: 10px 0;
+}
+
+header nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+header nav ul li {
+  margin: 0 15px;
+}
+
+header nav ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+}
+
+header nav ul li a:hover {
+  color: #4559f1;
+}
+
+.hero {
+  background-color: #f0f0f0;
+  padding: 20px;
+  text-align: center;
+}
+
+.hero img {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  object-fit: cover;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.courses {
+  padding: 20px;
+}
+
+.courses ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.courses li {
+  margin-bottom: 20px;
+}
+
+.courses img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.about {
+  padding: 20px;
+}
+
+.about img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+.login {
+  padding: 20px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.login button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.student-portal {
+  padding: 20px;
+}
+
+.student-portal ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.student-portal li {
+  margin-bottom: 10px;
+}
+
+.registration {
+  padding: 20px;
+}
+
+.registration form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.registration input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.registration button {
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+footer {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+  background: #4ab8e7;
+}

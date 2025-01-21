@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal - Assignments</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Assignments</h1>
+    </header>
+
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Student.html">Dashboard</a></li>
+        <li><a href="enrollment.html">Enroll Classes</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Assignment Upload/Download</h2>
+      <form id="uploadForm" onsubmit="handleUpload(event)">
+        <label for="file">Upload Assignment:</label>
+        <input type="file" id="file" name="file" /><br />
+        <input type="submit" value="Upload" />
+      </form>
+
+      <h3>Uploaded Assignments:</h3>
+      <ul id="uploadedAssignments">
+        <!-- Uploaded assignments will appear here -->
+      </ul>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Student Section</p>
+    </footer>
+
+    <script>
+      // Load uploaded assignments from local storage
+      function loadUploadedAssignments() {
+        const uploadedAssignments = JSON.parse(
+          localStorage.getItem("uploadedAssignments") || "[]"
+        );
+        const list = document.getElementById("uploadedAssignments");
+
+        list.innerHTML = ""; // Clear previous items
+        uploadedAssignments.forEach((file, index) => {
+          const listItem = document.createElement("li");
+
+          // Create a downloadable link
+          const link = document.createElement("a");
+          link.href = file.url;
+          link.download = file.name;
+          link.textContent = file.name;
+          listItem.appendChild(link);
+
+          // Add delete button
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+          deleteButton.onclick = () => deleteAssignment(index);
+          listItem.appendChild(deleteButton);
+
+          list.appendChild(listItem);
+        });
+      }
+
+      // Handle file upload
+      function handleUpload(event) {
+        event.preventDefault();
+        const fileInput = document.getElementById("file");
+        const file = fileInput.files[0];
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const uploadedAssignments = JSON.parse(
+              localStorage.getItem("uploadedAssignments") || "[]"
+            );
+
+            // Store file as URL in local storage
+            uploadedAssignments.push({
+              name: file.name,
+              url: e.target.result,
+            });
+
+            localStorage.setItem(
+              "uploadedAssignments",
+              JSON.stringify(uploadedAssignments)
+            );
+            loadUploadedAssignments();
+            alert("Assignment uploaded successfully!");
+
+            // Reset the file input
+            fileInput.value = "";
+          };
+          reader.readAsDataURL(file);
+        } else {
+          alert("Please select a file to upload.");
+        }
+      }
+
+      // Delete assignment from local storage
+      function deleteAssignment(index) {
+        const uploadedAssignments = JSON.parse(
+          localStorage.getItem("uploadedAssignments") || "[]"
+        );
+        uploadedAssignments.splice(index, 1);
+        localStorage.setItem(
+          "uploadedAssignments",
+          JSON.stringify(uploadedAssignments)
+        );
+        loadUploadedAssignments();
+        alert("Assignment deleted.");
+      }
+
+      // Initialize the uploaded assignments list on page load
+      window.addEventListener("load", loadUploadedAssignments);
+    </script>
+  </body>
+</html>

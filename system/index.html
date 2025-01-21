@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>School Website</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap"
+    />
+    <style>
+      body {
+        background-image: linear-gradient(to right, #51bce3, #3e4883);
+      }
+    </style>
+
+    <style>
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        background-image: linear-gradient(to right, #69bddb, #4b5489);
+        padding: 20px;
+        border-radius: 5px;
+        width: 80%;
+        max-width: 500px;
+        text-align: center;
+        position: relative;
+      }
+
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <section class="hero">
+      <img src="city-sunset.jpg" alt="Hero image" />
+      <h1>Welcome to Our School</h1>
+      <p>
+        This is is a premier educational institution dedicated to equipping
+        students with the skills and knowledge necessary for success in the
+        rapidly evolving technology sector.
+      </p>
+     
+      <button class="btn" onclick="openModal()">Learn More</button>
+
+      
+      <div id="infoModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeModal()">&times;</span>
+          <h2>About Our School</h2>
+          <p>
+            Our school provides an enriching environment for students interested
+            in technology. With hands-on projects and mentorship from industry
+            experts, we empower students to gain real-world skills that prepare
+            them for successful careers in tech.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="Student.html">Student</a></li>
+          <li><a href="#About">About</a></li>
+          <li><a href="register.html">SignIn</a></li>
+          <li><a href="teacher.html">Teacher</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    
+    <section class="courses">
+      <h2>Courses Offered</h2>
+      <ul>
+        <li>
+          <img src="371.jpg" alt="Web Management Course" />
+          <h3>Course 1: Web Management</h3>
+          <p>
+            Learn the skills needed to manage, maintain, and update websites
+            effectively.
+          </p>
+        </li>
+        <li>
+          <img src="6819.jpg" alt="Programming Course" />
+          <h3>Course 2: Programming Basics</h3>
+          <p>
+            An introduction to programming languages like Python, Java, and C++.
+          </p>
+        </li>
+        <li>
+          <img src="812.jpg" alt="Database Management Course" />
+          <h3>Course 3: Database Management</h3>
+          <p>Master SQL, NoSQL, and data structures to manage data systems.</p>
+        </li>
+        <li>
+          <img src="60504.jpg" alt="Cybersecurity Course" />
+          <h3>Course 4: Cybersecurity Fundamentals</h3>
+          <p>
+            Understand security protocols to protect systems and data from
+            threats.
+          </p>
+        </li>
+        <li>
+          <img src="2150.jpg" alt="Networking Course" />
+          <h3>Course 5: Networking Essentials</h3>
+          <p>
+            Learn the basics of network infrastructure, protocols, and
+            maintenance.
+          </p>
+        </li>
+        <li>
+          <img src="6518.jpg" alt="UI/UX Design Course" />
+          <h3>Course 6: UI/UX Design</h3>
+          <p>
+            Build skills in designing user-friendly and visually appealing
+            interfaces.
+          </p>
+        </li>
+        <li>
+          <img src="354.jpg" alt="Cloud Computing Course" />
+          <h3>Course 7: Cloud Computing</h3>
+          <p>
+            Introduction to cloud services, architecture, and virtual
+            environments.
+          </p>
+        </li>
+        <li>
+          <img src="book.jpg" alt="Data Science Course" />
+          <h3>Course 8: Data Science and Analytics</h3>
+          <p>
+            Learn data analysis techniques to derive insights from large data
+            sets.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <div class="About" id="About">
+      <section class="about">
+        <h2 style="text-align: center; text-decoration: underline;">About Our School</h2>
+        <p>
+        Our school is committed to providing top-notch IT education to students passionate about technology and innovation. Established in <strong>a strong foundation</strong>, we have continuously evolved to offer cutting-edge courses that prepare our students for dynamic careers in the tech industry.
+        </p>
+
+        <h3> Our Mission</h3>
+        <blockquote>
+          To cultivate a learning environment that empowers students to excel in the fields of technology and information systems. We aim to equip our students with both theoretical knowledge and practical skills that meet the demands of the modern workforce.
+        </blockquote>
+
+        <h3> Our Vision</h3>
+        <blockquote>
+          Our vision is to become a leader in IT education, recognized globally for our quality programs, innovative teaching methods, and student success in the tech industry. We strive to inspire the next generation of innovators and leaders in technology.
+        </blockquote>
+
+        <h3> Our Faculty</h3>
+        <ul>
+          <li>
+            Industry experts with years of experience in fields like software engineering, data science, cybersecurity, and digital design.
+          </li>
+          <li>
+            Dedicated educators passionate about sharing their knowledge and mentoring students.
+          </li>
+          <li>
+            Faculty who guide students toward achieving their professional goals.
+          </li>
+        </ul>
+
+        <h3> Student Life</h3>
+        <p>
+          Beyond academics, our school offers a vibrant campus life filled with opportunities to grow, such as:
+        </p>
+        <ul>
+          <li>Coding boot-camps</li>
+          <li>Hackathons</li>
+          <li>Industry seminars</li>
+          <li>Numerous clubs, activities, and events</li>
+        </ul>
+
+        <p>
+          These activities encourage students to broaden their experience and network with professionals.
+        </p>
+
+        <h3> Accreditations</h3>
+        <p>
+          Our programs are approved by recognized educational bodies, ensuring:
+        </p>
+        <ul>
+          <li>High-quality education aligned with industry standards</li>
+          <li>Continual improvements to match evolving technology trends</li>
+        </ul>
+        <p>
+          We are proud of maintaining these standards to give our students the best learning experience.
+        </p>
+
+      </section>
+
+    </div>
+      </section>
+    </div>
+
+   
+    <footer>
+      <p>&copy; 2024 School Website</p>
+    </footer>
+
+   
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>About Our School</h2>
+        <p>
+          Our school provides an enriching environment for students interested
+          in technology. With hands-on projects and mentorship from industry
+          experts, we empower students to gain real-world skills that prepare
+          them for successful careers in tech.
+        </p>
+      </div>
+    </div>
+
+    <script>
+     
+      function openModal() {
+        document.getElementById("infoModal").style.display = "flex";
+      }
+
+      function closeModal() {
+        document.getElementById("infoModal").style.display = "none";
+      }
+
+      
+      window.onclick = function (event) {
+        const modal = document.getElementById("infoModal");
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

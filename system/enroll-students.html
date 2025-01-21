@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enroll Students</title>
+    <link rel="stylesheet" href="teacher.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>Enroll Students</h1>
+    </header>
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Teacher.html">Dashboard</a></li>
+        <li><a href="enroll-students.html">Enroll Students</a></li>
+        <li><a href="grade-assignments.html">Grade Assignments</a></li>
+        <li><a href="schedule.html">Class Schedule</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <section>
+        <h2>Enroll a Student</h2>
+        <form id="enroll-form">
+          <label for="student-name">Student Name:</label>
+          <input
+            type="text"
+            id="student-name"
+            placeholder="Enter student name"
+            required
+          />
+          <button type="submit">Enroll Student</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Enrolled Students</h2>
+        <ul id="enrolled-students"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; Teacher Section</p>
+    </footer>
+
+    <script>
+      const enrollForm = document.getElementById("enroll-form");
+      const enrolledStudentsList = document.getElementById("enrolled-students");
+
+      // Load enrolled students from localStorage
+      const loadEnrolledStudents = () => {
+        const students = JSON.parse(
+          localStorage.getItem("enrolledStudents") || "[]"
+        );
+        enrolledStudentsList.innerHTML = students
+          .map((student) => `<li>${student}</li>`)
+          .join("");
+      };
+
+      // Add a student to localStorage
+      enrollForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const studentName = document.getElementById("student-name").value;
+        const students = JSON.parse(
+          localStorage.getItem("enrolledStudents") || "[]"
+        );
+        students.push(studentName);
+        localStorage.setItem("enrolledStudents", JSON.stringify(students));
+        document.getElementById("student-name").value = "";
+        loadEnrolledStudents();
+      });
+
+      window.addEventListener("load", loadEnrolledStudents);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Section</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Student section</h1>
+    </header>
+
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Student.html">Dashboard</a></li>
+        <li><a href="enrollment.html">Enroll Classes</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+      </ul>
+    </nav>
+
+    <main class="dashboard">
+      <h2>Welcome, Student</h2>
+      <section class="info-section">
+        <div class="info-box">
+          <h3>Total Fees Paid</h3>
+          <p id="total-fees-paid">ksh.0</p>
+        </div>
+        <div class="info-box">
+          <h3>Current Courses</h3>
+          <p id="current-courses">No courses enrolled yet</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; Student Section</p>
+    </footer>
+
+    <script>
+      // Load and display the fee and course data from local storage
+      function loadDashboardData() {
+        // Load and display the total fees paid
+        const paidAmount = localStorage.getItem("paidAmount") || "0";
+        document.getElementById("total-fees-paid").textContent =
+          "ksh." + paidAmount;
+
+        // Load and display the selected courses
+        const chosenCourses = JSON.parse(
+          localStorage.getItem("chosenCourses") || "[]"
+        );
+        document.getElementById("current-courses").textContent =
+          chosenCourses.length > 0
+            ? chosenCourses.join(", ")
+            : "No courses enrolled yet";
+      }
+
+      // Initialize page with stored data
+      window.addEventListener("load", loadDashboardData);
+    </script>
+  </body>
+</html>

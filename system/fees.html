@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal - Fees</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Fees Status</h1>
+    </header>
+
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Student.html">Dashboard</a></li>
+        <li><a href="enrollment.html">Enroll Classes</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Fee Payment Status</h2>
+      <p>Total Fees: ksh.60000</p>
+
+      <label for="amount-paid">Enter Amount Paid:</label>
+      <input type="number" id="amount-paid" placeholder="Enter amount" />
+      <button onclick="submitPayment()">Submit Payment</button>
+
+      <p id="fees-paid">Fees Paid: ksh.<span id="paid-amount">0</span></p>
+      <p id="outstanding-balance">
+        Outstanding Balance: ksh.<span id="balance">60000</span>
+      </p>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Student Section</p>
+    </footer>
+
+    <script>
+      // Load payment data from local storage
+      function loadPaymentData() {
+        const totalFees = 60000;
+        const paidAmount = parseInt(localStorage.getItem("paidAmount") || "0");
+        const balance = totalFees - paidAmount;
+
+        document.getElementById("paid-amount").textContent = paidAmount;
+        document.getElementById("balance").textContent = balance;
+      }
+
+      // Submit payment and update local storage
+      function submitPayment() {
+        const payment = parseInt(document.getElementById("amount-paid").value);
+        if (!isNaN(payment) && payment > 0) {
+          let paidAmount = parseInt(localStorage.getItem("paidAmount") || "0");
+          paidAmount += payment;
+          const balance = 5000 - paidAmount;
+
+          localStorage.setItem("paidAmount", paidAmount);
+          document.getElementById("paid-amount").textContent = paidAmount;
+          document.getElementById("balance").textContent = balance;
+
+          alert("Payment recorded!");
+          document.getElementById("amount-paid").value = ""; // Clear input
+        } else {
+          alert("Please enter a valid amount.");
+        }
+      }
+
+      // Initialize page with stored data
+      window.addEventListener("load", loadPaymentData);
+    </script>
+  </body>
+</html>

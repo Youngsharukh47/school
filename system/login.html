@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Login</title>
+    <link rel="stylesheet" href="reg.css" />
+  </head>
+  <body>
+    <h1>Teacher Login</h1>
+    <form id="login-form">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter your username"
+        required
+      /><br /><br />
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        required
+      /><br /><br />
+      <button type="submit">Login</button>
+      <p id="error-message" style="color: red; display: none">
+        Invalid login. Please try again.
+      </p>
+    </form>
+    <p>Don't have an account? <a href="reg.html">Register here</a>.</p>
+    <script>
+      // Handle login form submission
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          // Get users from localStorage
+          const users = JSON.parse(localStorage.getItem("users") || "[]");
+
+          // Check if credentials match any registered user
+          const validUser = users.find(
+            (user) => user.username === username && user.password === password
+          );
+
+          if (validUser) {
+            // Save login state to sessionStorage (session-based login)
+            sessionStorage.setItem("isLoggedIn", "true");
+
+            // Redirect to the teacher's dashboard
+            window.location.href = "Teacher.html";
+          } else {
+            // Display error message
+            document.getElementById("error-message").style.display = "block";
+          }
+        });
+    </script>
+  </body>
+</html>

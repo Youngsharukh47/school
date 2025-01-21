@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal - Enroll Classes</title>
+    <link rel="stylesheet" href="student.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Enroll in Classes</h1>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <nav class="nav-bar" id="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Student.html">Dashboard</a></li>
+        <li><a href="enrollment.html">Enroll Classes</a></li>
+        <li><a href="fees.html">Fees</a></li>
+        <li><a href="attendance.html">Attendance</a></li>
+        <li><a href="assignments.html">Assignments</a></li>
+        <li><a href="teacher.html">Assignments</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <h2>Select Classes to Enroll</h2>
+      <form onsubmit="submitEnrollment(event)">
+        <label>
+          <input
+            type="checkbox"
+            id="select-all"
+            onclick="toggleAllClasses(this)"
+          />
+          Select All Courses
+        </label>
+        <br />
+
+        <!-- Initial Course Options -->
+        <div id="course-list">
+          <label>
+            <input
+              type="checkbox"
+              name="course"
+              value="Web Development"
+              class="course-checkbox"
+            />
+            Web Development
+          </label>
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="course"
+              value="Data Science"
+              class="course-checkbox"
+            />
+            Data Science
+          </label>
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="course"
+              value="Database Management"
+              class="course-checkbox"
+            />
+            Database Management
+          </label>
+          <br />
+
+          <label>
+            <input
+              type="checkbox"
+              name="course"
+              value="Machine Learning"
+              class="course-checkbox"
+            />
+            Machine Learning
+          </label>
+          <br />
+        </div>
+
+        <!-- Input to Add New Courses -->
+        <label for="new-course">Add a New Course:</label>
+        <input type="text" id="new-course" placeholder="Course Name" />
+        <button type="button" onclick="addCourse()">Add Course</button>
+        <br /><br />
+
+        <input type="submit" value="Enroll" />
+      </form>
+
+      <!-- Section to display chosen courses -->
+      <section id="chosen-courses">
+        <h2>Chosen Courses</h2>
+        <ul id="chosen-courses-list">
+          <!-- Chosen courses will appear here -->
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Student Section</p>
+    </footer>
+
+    <script>
+      // Toggle the navigation menu visibility on small screens
+      function toggleMenu() {
+        const nav = document.getElementById("nav-bar");
+        nav.style.display = nav.style.display === "block" ? "none" : "block";
+      }
+
+      // Adjust the menu when resizing the window
+      function adjustMenu() {
+        const nav = document.getElementById("nav-bar");
+        nav.style.display = window.innerWidth > 768 ? "block" : "none";
+      }
+
+      // Toggle all checkboxes when "Select All" is checked or unchecked
+      function toggleAllClasses(selectAllCheckbox) {
+        const checkboxes = document.querySelectorAll(".course-checkbox");
+        checkboxes.forEach((checkbox) => {
+          checkbox.checked = selectAllCheckbox.checked;
+        });
+      }
+
+      // Add a new course dynamically
+      function addCourse() {
+        const courseName = document.getElementById("new-course").value.trim();
+        if (courseName === "") {
+          alert("Please enter a course name.");
+          return;
+        }
+
+        const courseList = document.getElementById("course-list");
+
+        // Create a new checkbox for the course
+        const newCourseLabel = document.createElement("label");
+        const newCourseCheckbox = document.createElement("input");
+
+        newCourseCheckbox.type = "checkbox";
+        newCourseCheckbox.name = "course";
+        newCourseCheckbox.value = courseName;
+        newCourseCheckbox.classList.add("course-checkbox");
+
+        newCourseLabel.appendChild(newCourseCheckbox);
+        newCourseLabel.appendChild(document.createTextNode(" " + courseName));
+
+        courseList.appendChild(newCourseLabel);
+        courseList.appendChild(document.createElement("br"));
+
+        // Clear the input field
+        document.getElementById("new-course").value = "";
+      }
+
+      // Function to handle form submission and save chosen courses
+      function submitEnrollment(event) {
+        event.preventDefault();
+        const selectedCourses = Array.from(
+          document.querySelectorAll(".course-checkbox:checked")
+        ).map((checkbox) => checkbox.value);
+
+        if (selectedCourses.length > 0) {
+          alert("You have enrolled in: " + selectedCourses.join(", "));
+
+          // Save chosen courses to local storage
+          localStorage.setItem(
+            "chosenCourses",
+            JSON.stringify(selectedCourses)
+          );
+          displayChosenCourses(selectedCourses);
+        } else {
+          alert("Please select at least one course.");
+        }
+      }
+
+      // Display the chosen courses in a separate list
+      function displayChosenCourses(courses) {
+        const chosenCoursesList = document.getElementById(
+          "chosen-courses-list"
+        );
+        chosenCoursesList.innerHTML = ""; // Clear the list
+
+        courses.forEach((course) => {
+          const listItem = document.createElement("li");
+          listItem.textContent = course;
+          chosenCoursesList.appendChild(listItem);
+        });
+      }
+
+      // Load saved courses from local storage on page load
+      function loadChosenCourses() {
+        const savedCourses = JSON.parse(
+          localStorage.getItem("chosenCourses") || "[]"
+        );
+        if (savedCourses.length > 0) {
+          displayChosenCourses(savedCourses);
+        }
+      }
+
+      // Initial setup
+      window.addEventListener("resize", adjustMenu);
+      window.addEventListener("load", () => {
+        adjustMenu();
+        loadChosenCourses();
+      });
+    </script>
+  </body>
+</html>

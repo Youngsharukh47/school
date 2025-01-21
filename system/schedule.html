@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Class Schedule</title>
+    <link rel="stylesheet" href="teacher.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Class Schedule</h1>
+    </header>
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Teacher.html">Dashboard</a></li>
+        <li><a href="enroll-students.html">Enroll Students</a></li>
+        <li><a href="grade-assignments.html">Grade Assignments</a></li>
+        <li><a href="schedule.html">Class Schedule</a></li>
+      </ul>
+    </nav>
+    <main class="content">
+      <section>
+        <h2>Add a Class</h2>
+        <form id="schedule-form">
+          <label for="class-name">Class Name:</label>
+          <input
+            type="text"
+            id="class-name"
+            placeholder="Enter class name"
+            required
+          />
+
+          <label for="class-date">Date:</label>
+          <input type="date" id="class-date" required />
+
+          <label for="class-time">Time:</label>
+          <input type="time" id="class-time" required />
+
+          <button type="submit">Add to Schedule</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Class Schedule</h2>
+        <ul id="class-schedule-list"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; Teacher Section</p>
+    </footer>
+
+    <script>
+      const scheduleForm = document.getElementById("schedule-form");
+      const classScheduleList = document.getElementById("class-schedule-list");
+
+      // Load the class schedule from localStorage
+      const loadClassSchedule = () => {
+        const schedule = JSON.parse(
+          localStorage.getItem("classSchedule") || "[]"
+        );
+        classScheduleList.innerHTML = schedule
+          .map(
+            (item, index) => `
+          <li>
+            <strong>${item.className}</strong> - 
+            ${item.date} at ${item.time}
+            <button onclick="deleteClass(${index})">Delete</button>
+          </li>
+        `
+          )
+          .join("");
+      };
+
+      // Add a class to the schedule
+      scheduleForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const className = document.getElementById("class-name").value;
+        const classDate = document.getElementById("class-date").value;
+        const classTime = document.getElementById("class-time").value;
+
+        const schedule = JSON.parse(
+          localStorage.getItem("classSchedule") || "[]"
+        );
+        schedule.push({ className, date: classDate, time: classTime });
+        localStorage.setItem("classSchedule", JSON.stringify(schedule));
+
+        scheduleForm.reset();
+        loadClassSchedule();
+      });
+
+      // Delete a class from the schedule
+      const deleteClass = (index) => {
+        const schedule = JSON.parse(
+          localStorage.getItem("classSchedule") || "[]"
+        );
+        schedule.splice(index, 1);
+        localStorage.setItem("classSchedule", JSON.stringify(schedule));
+        loadClassSchedule();
+      };
+
+      window.addEventListener("load", loadClassSchedule);
+    </script>
+  </body>
+</html>

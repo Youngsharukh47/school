@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Registration</title>
+    <link rel="stylesheet" href="reg.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Teacher Registration</h1>
+    </header>
+
+    <main class="register-container">
+      <form id="register-form">
+        <label for="reg-username">Username:</label>
+        <input
+          type="text"
+          id="reg-username"
+          placeholder="Enter your username"
+          required
+        />
+
+        <label for="reg-password">Password:</label>
+        <input
+          type="password"
+          id="reg-password"
+          placeholder="Enter your password"
+          required
+        />
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm-password"
+          placeholder="Re-enter your password"
+          required
+        />
+
+        <button type="submit">Register</button>
+        <p id="error-message" style="color: red; display: none">
+          Passwords do not match. Try again.
+        </p>
+      </form>
+      <p>Already have an account? <a href="login.html">Log in here</a>.</p>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Teacher Section</p>
+    </footer>
+
+    <script>
+      // Handle registration form submission
+      document
+        .getElementById("register-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("reg-username").value;
+          const password = document.getElementById("reg-password").value;
+          const confirmPassword =
+            document.getElementById("confirm-password").value;
+
+          // Check if passwords match
+          if (password !== confirmPassword) {
+            document.getElementById("error-message").style.display = "block";
+            return;
+          }
+
+          // Save user credentials to localStorage
+          let users = JSON.parse(localStorage.getItem("users") || "[]");
+          users.push({ username, password });
+          localStorage.setItem("users", JSON.stringify(users));
+
+          // Redirect to login page
+          alert("Registration successful! Please log in.");
+          window.location.href = "login.html";
+        });
+    </script>
+  </body>
+</html>

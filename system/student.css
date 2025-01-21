@@ -1,0 +1,114 @@
+/* General styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #c9d6ff;
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+  margin: 0;
+  padding: 0;
+}
+
+/* Header Section */
+.header {
+  background-color: rgb(125, 125, 235);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 20px 35px rgba(0, 0, 1, 0.2);
+}
+
+/* Navigation Bar */
+.nav-bar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #07001f;
+  text-align: center;
+}
+
+.nav-bar ul li {
+  display: inline-block;
+  padding: 15px;
+}
+
+.nav-bar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: 0.4s;
+}
+
+.nav-bar ul li a:hover {
+  background-color: rgb(125, 125, 235);
+  border-radius: 5px;
+}
+
+/* Dashboard & Content Area */
+.dashboard,
+.content {
+  padding: 20px;
+}
+
+/* Info Section */
+.info-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.info-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 1, 0.3);
+  text-align: center;
+  transition: 0.4s;
+}
+
+.info-box h3 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  color: #07001f;
+}
+
+.info-box:hover {
+  box-shadow: 0 20px 35px rgba(0, 0, 1, 0.6);
+}
+
+/* Footer Section */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #07001f;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Button Styles */
+button {
+  font-size: 1.1rem;
+  padding: 8px 0;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  background: rgb(125, 125, 235);
+  color: white;
+  cursor: pointer;
+  transition: 0.9s;
+}
+
+button:hover {
+  background: #07001f;
+  color: white;
+}

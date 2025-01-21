@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade Assignments</title>
+    <link rel="stylesheet" href="teacher.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <h1>Grade Assignments</h1>
+    </header>
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Teacher.html">Dashboard</a></li>
+        <li><a href="enroll-students.html">Enroll Students</a></li>
+        <li><a href="grade-assignments.html">Grade Assignments</a></li>
+        <li><a href="schedule.html">Class Schedule</a></li>
+      </ul>
+    </nav>
+
+    <main class="content">
+      <section>
+        <h2>Grade an Assignment</h2>
+        <form id="grade-form">
+          <label for="student-name">Student Name:</label>
+          <input
+            type="text"
+            id="student-name"
+            placeholder="Enter student name"
+            required
+          />
+
+          <label for="assignment-grade">Grade:</label>
+          <input
+            type="text"
+            id="assignment-grade"
+            placeholder="Enter grade"
+            required
+          />
+
+          <button type="submit">Submit Grade</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Graded Assignments</h2>
+        <ul id="graded-assignments"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; Teacher Section</p>
+    </footer>
+
+    <script>
+      const gradeForm = document.getElementById("grade-form");
+      const gradedAssignmentsList =
+        document.getElementById("graded-assignments");
+
+      // Load graded assignments from localStorage
+      const loadGradedAssignments = () => {
+        const assignments = JSON.parse(
+          localStorage.getItem("gradedAssignments") || "[]"
+        );
+        gradedAssignmentsList.innerHTML = assignments
+          .map(
+            (assignment) =>
+              `<li>${assignment.student}: ${assignment.grade}</li>`
+          )
+          .join("");
+      };
+
+      // Add a grade to localStorage and update dashboard
+      gradeForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const studentName = document.getElementById("student-name").value;
+        const grade = document.getElementById("assignment-grade").value;
+        const assignments = JSON.parse(
+          localStorage.getItem("gradedAssignments") || "[]"
+        );
+        assignments.push({ student: studentName, grade });
+        localStorage.setItem("gradedAssignments", JSON.stringify(assignments));
+
+        // Optionally, update the Teacher Dashboard directly here by triggering a reload
+        window.localStorage.setItem("gradedAssignmentsUpdated", Date.now());
+
+        gradeForm.reset();
+        loadGradedAssignments();
+      });
+
+      window.addEventListener("load", loadGradedAssignments);
+    </script>
+  </body>
+</html>

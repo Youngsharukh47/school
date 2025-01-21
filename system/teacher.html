@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Teacher Section</title>
+    <link rel="stylesheet" href="teacher.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Teacher Section</h1>
+    </header>
+    <script>
+      // Check if the user is logged in
+      const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+
+      if (!isLoggedIn) {
+        // Redirect to login page if not logged in
+        window.location.href = "login.html";
+      }
+    </script>
+
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Teacher.html">Dashboard</a></li>
+        <li><a href="enroll-students.html">Enroll Students</a></li>
+        <li><a href="grade-assignments.html">Grade Assignments</a></li>
+        <li><a href="schedule.html">Class Schedule</a></li>
+      </ul>
+    </nav>
+
+    <main class="dashboard">
+      <h2>Welcome, Teacher</h2>
+
+      <!-- Section for displaying enrolled students -->
+      <section class="info-section">
+        <div class="info-box">
+          <h3>Students Enrolled</h3>
+          <ul id="enrolled-students-list"></ul>
+        </div>
+      </section>
+
+      <!-- Section for displaying assignments graded -->
+      <section class="info-section">
+        <div class="info-box">
+          <h3>Assignments Graded</h3>
+          <ul id="graded-assignments-list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; Teacher Section</p>
+    </footer>
+    <button onclick="logout()">Logout</button>
+
+    <script>
+      // Check if the user is logged in on page load
+      if (!sessionStorage.getItem("isLoggedIn")) {
+        // Redirect to login page if not logged in
+        window.location.href = "login.html";
+      }
+
+      // Function to handle logout
+      function logout() {
+        // Clear sessionStorage to log the user out
+        sessionStorage.removeItem("isLoggedIn");
+
+        // Redirect to the login page
+        window.location.href = "login.html";
+      }
+    </script>
+
+    <script>
+      // Fetch and display enrolled students
+      const loadEnrolledStudents = () => {
+        const students = JSON.parse(
+          localStorage.getItem("enrolledStudents") || "[]"
+        );
+        const studentList = document.getElementById("enrolled-students-list");
+        studentList.innerHTML = students.length
+          ? students.map((student) => `<li>${student}</li>`).join("")
+          : "<li>No students enrolled yet</li>";
+      };
+
+      // Fetch and display graded assignments
+      const loadGradedAssignments = () => {
+        const assignments = JSON.parse(
+          localStorage.getItem("gradedAssignments") || "[]"
+        );
+        const assignmentList = document.getElementById(
+          "graded-assignments-list"
+        );
+        assignmentList.innerHTML = assignments.length
+          ? assignments
+              .map(
+                (assignment) =>
+                  `<li>${assignment.student}: ${assignment.grade}</li>`
+              )
+              .join("")
+          : "<li>No assignments graded yet</li>";
+      };
+
+      // Check for updates to graded assignments (triggered from grade-assignments page)
+      window.addEventListener("storage", (event) => {
+        if (event.key === "gradedAssignmentsUpdated") {
+          loadGradedAssignments();
+        }
+      });
+
+      // Initialize the page
+      window.addEventListener("load", () => {
+        loadEnrolledStudents();
+        loadGradedAssignments();
+      });
+    </script>
+  </body>
+</html>

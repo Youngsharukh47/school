@@ -1,0 +1,152 @@
+/* Universal Selector */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #c9d6ff;
+  background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+}
+
+/* Header Section */
+.header {
+  background-color: rgb(125, 125, 235);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation Bar */
+.nav-bar {
+  background-color: #07001f; /* Same as header */
+  color: white;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-bar ul li {
+  margin-left: 20px;
+}
+
+.nav-bar ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  transition: background-color 0.4s;
+}
+
+.nav-bar ul li a:hover {
+  background-color: rgb(125, 125, 235); /* Button hover color */
+  border-radius: 5px;
+}
+
+/* Container for Main Content */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Section */
+#formSection {
+  margin-bottom: 20px;
+}
+
+#formSection h2 {
+  color: #333; /* Dark text color */
+}
+
+/* Summary Section */
+#summarySection {
+  margin-top: 20px;
+}
+
+#summarySection h3 {
+  color: #333; /* Dark text color */
+}
+
+/* Button Styles */
+button {
+  font-size: 1.1rem;
+  padding: 10px;
+  border-radius: 20px; /* Rounded corners */
+  border: none;
+  background: rgb(125, 125, 235); /* Button color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.4s;
+}
+
+button:hover {
+  background: rgb(84, 84, 218);
+}
+
+/* Popup Styles */
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+/* Responsive Styles for Mobile View */
+@media screen and (max-width: 600px) {
+  .container {
+    padding: 10px;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-bar ul {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-bar ul li {
+    margin: 5px 0;
+  }
+}
+
+/* Result Section */
+#resultSection {
+  margin-top: 20px;
+}
+
+#resultSection h3 {
+  margin-top: 10px;
+}
+
+#resultSection p {
+  margin-bottom: 5px;
+}
+
+#resultSection span {
+  font-weight: bold;
+}
