@@ -11,10 +11,10 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.14.1/firestore-app.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAhegQv3Z2p_ZySKi6MS1PEdr6EbshVMRw",
+  apiKey: "",
   authDomain: "system-4e740.firebaseapp.com",
-  projectId: "system-4e740",
-  storageBucket: "system-4e740.appspot.com",
+  projectId: "",
+  storageBucket: "",
   messagingSenderId: "47119790502",
   appId: "1:47119790502:web:5ddddf263fc1aa20821f67",
   measurementId: "G-VKV35BR2FV",
